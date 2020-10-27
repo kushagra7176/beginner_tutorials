@@ -25,3 +25,33 @@ Followed the following tutorials:
 1. ROS Melodic
 2. Catkin
 3. Ubuntu 18.04 LTS
+
+## Standard Install Via Command Line
+```
+cd ~/catkin_ws/src
+git clone --recursive https://github.com/kushagra7176/beginner_tutorials.git
+cd ~/catkin_ws
+source ./devel/setup.bash
+catkin_make
+```
+Open a new terminal and run the commands given below:
+
+Open terminal 1 and run:
+```
+  cd ~/catkin_ws
+  source ./devel/setup.bash
+  roscore
+```
+Open terminal 2 and run:
+```
+  cd ~/catkin_ws
+  source ./devel/setup.bash
+  rosrun beginner_tutorials talker
+```  
+Open terminal 3 and run:
+```
+  cd ~/catkin_ws
+  source ./devel/setup.bash
+  rosrun beginner_tutorials listener
+```  
+To stop the program press Ctrl + c in each terminal
