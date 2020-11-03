@@ -4,10 +4,25 @@
  * [legal/copyright]
  */
 #include <sstream>
+#include <string>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include <beginner_tutorials/ModifyString.h>
 
-
+std::string newString = "Welcome to ENPM 808X";
+/**
+ * @brief  ModifyMessage Service callback function
+ * @param  req   request data for service
+ * @param  res   response data for service
+ * @return bool
+ */
+bool modifyString(beginner_tutorials::ModifyString::Request& req,
+                  beginner_tutorials::ModifyString::Response& res) {
+    newString = req.changeString;
+    ROS_WARN_STREAM("Published message is changed");
+    res.changedString = newString;
+    return true;
+}
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
  */
@@ -48,11 +63,16 @@ int main(int argc, char **argv) {
    * than we can send them, the number here specifies how many messages to
    * buffer up before throwing some away.
    */
-  ros::Publisher chatter_pub = n.advertise < std_msgs::String
-      > ("chatter", 1000);
+  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::ServiceServer server = n.advertiseService("ModifyString", modifyString);
+  double frequency = atof(argv[1]);
+  if (frequency <= 0) {
+       ROS_ERROR_STREAM("Frequency has to be positive");
+       frequency = 10;
+  }
+  ROS_INFO_STREAM("Frequency is : "<< frequency);
 
-  ros::Rate loop_rate(10);
-
+  ros::Rate loop_rate(frequency);
   /**
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
@@ -65,10 +85,11 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "I am Kushagra Agrawal. I love robots!! " << count;
+    ROS_DEBUG_STREAM("count "<< count);
+    ss << newString << count;
     msg.data = ss.str();
 
-    ROS_INFO("%s", msg.data.c_str());
+    ROS_INFO_STREAM(msg.data.c_str());
 
     /**
      * The publish() function is how you send messages. The parameter
@@ -83,5 +104,6 @@ int main(int argc, char **argv) {
     loop_rate.sleep();
     ++count;
   }
+  ROS_FATAL_STREAM("Ros exiting");
   return 0;
 }
