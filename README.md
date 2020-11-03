@@ -46,6 +46,8 @@ Open terminal 3 and to use default frequency run:
 ```  
 Open a new terminal and run following to change the message via command line:
 ```
+cd catkin_ws
+source ./devel/setup.bash
 rosservice call /ModifyString "Kushagra Agrawal"
 ```
 To stop the program press Ctrl + c in each terminal
