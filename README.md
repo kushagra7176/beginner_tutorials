@@ -4,21 +4,11 @@
 
 Followed the following tutorials:
 
-1. http://wiki.ros.org/ROS/Tutorials/NavigatingTheWiki (Links to an external site.)
+1. http://wiki.ros.org/ROS/Tutorials/Getting%20started%20with%20roswtf (Links to an external site.)
 
-2. http://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem (Links to an external site.)
+2. http://wiki.ros.org/ROS/Tutorials/UnderstandingServicesParams (Links to an external site.)
 
-3. http://wiki.ros.org/ROS/Tutorials/CreatingPackage (Links to an external site.)
-
-4. http://wiki.ros.org/ROS/Tutorials/BuildingPackages (Links to an external site.)
-
-5. http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes (Links to an external site.)
-
-6. http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics (Links to an external site.)
-
-7. http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29 (Links to an external site.)
-
-8. http://wiki.ros.org/ROS/Tutorials/ExaminingPublisherSubscriber
+3. http://wiki.ros.org/ROS/Tutorials/UsingRqtconsoleRoslaunch
 
 ## Dependencies
 
@@ -46,12 +36,16 @@ Open terminal 2 and run:
 ```
   cd ~/catkin_ws
   source ./devel/setup.bash
-  rosrun beginner_tutorials talker
+  roslaunch beginner_tutorials talkerlistener.launch frequency:=1
 ```  
-Open terminal 3 and run:
+Open terminal 3 and to use default frequency run:
 ```
   cd ~/catkin_ws
   source ./devel/setup.bash
-  rosrun beginner_tutorials listener
+  roslaunch beginner_tutorials talkerlistener.launch
 ```  
+Open a new terminal and run following to change the message via command line:
+```
+rosservice call /ModifyString "Kushagra Agrawal"
+```
 To stop the program press Ctrl + c in each terminal
