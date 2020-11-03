@@ -15,7 +15,7 @@ add_service_files(FILES ModifyString.srv)
 
 generate_messages(DEPENDENCIES std_msgs)
 
-
+set(CMAKE_CXX_STANDARD 14)
 catkin_package()
 
 include_directories(
