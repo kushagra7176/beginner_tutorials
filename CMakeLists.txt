@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(FILES Num.msg)
 
-add_service_files(FILES AddTwoInts.srv)
+add_service_files(FILES ModifyString.srv)
 
 generate_messages(DEPENDENCIES std_msgs)
 
