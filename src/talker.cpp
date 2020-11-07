@@ -113,7 +113,7 @@ int main(int argc, char **argv) {
      * in the constructor above.
      */
     chatter_pub.publish(msg);
-    poseCallback(); 
+    poseCallback();
     ros::spinOnce();
 
     loop_rate.sleep();
